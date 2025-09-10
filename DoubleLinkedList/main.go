@@ -2,29 +2,29 @@ package main
 
 import "fmt"
 
-type Node struct {
-	value int
-	next  *Node
-	prev  *Node
+type Node[T comparable] struct {
+	value T
+	next  *Node[T]
+	prev  *Node[T]
 }
 
-type LinkedList struct {
-	head *Node
-	tail *Node
+type LinkedList[T comparable] struct {
+	head *Node[T]
+	tail *Node[T]
 }
 
-func newLinkedList(values []int) *LinkedList {
+func newLinkedList[T comparable](values []T) *LinkedList[T] {
 	if len(values) == 0 {
-		return &LinkedList{}
+		return &LinkedList[T]{}
 	}
 
-	linkedList := &LinkedList{
+	linkedList := &LinkedList[T]{
 		head: nil,
 		tail: nil,
 	}
 
 	for _, val := range values {
-		n := &Node{
+		n := &Node[T]{
 			value: val,
 			next:  nil,
 			prev:  nil,
@@ -48,8 +48,8 @@ func newLinkedList(values []int) *LinkedList {
 
 }
 
-func (l *LinkedList) Append(value int) {
-	n := &Node{
+func (l *LinkedList[T]) Append(value T) {
+	n := &Node[T]{
 		value: value,
 		next:  nil,
 		prev:  nil,
@@ -68,8 +68,8 @@ func (l *LinkedList) Append(value int) {
 
 }
 
-func (l *LinkedList) Insert(value, position int) {
-	n := &Node{
+func (l *LinkedList[T]) Insert(value T, position int) {
+	n := &Node[T]{
 		value: value,
 		next:  nil,
 		prev:  nil,
@@ -115,7 +115,7 @@ func (l *LinkedList) Insert(value, position int) {
 
 }
 
-func (l *LinkedList) RemoveValue(value int) {
+func (l *LinkedList[T]) RemoveValue(value T) {
 
 	if l.head == nil {
 		return
@@ -152,7 +152,7 @@ func (l *LinkedList) RemoveValue(value int) {
 
 }
 
-func (l *LinkedList) numberOfNodesOnLinkedList() int {
+func (l *LinkedList[T]) numberOfNodesOnLinkedList() int {
 	var count int
 
 	if l.head == nil {
@@ -169,7 +169,7 @@ func (l *LinkedList) numberOfNodesOnLinkedList() int {
 	return count
 }
 
-func (l *LinkedList) printLinkedListForward() {
+func (l *LinkedList[T]) printLinkedListForward() {
 	if l.head == nil {
 		fmt.Println("The linked list it's empty")
 		return
@@ -185,7 +185,7 @@ func (l *LinkedList) printLinkedListForward() {
 	}
 }
 
-func (l *LinkedList) findValue(value int) (bool, int) {
+func (l *LinkedList[T]) findValue(value T) (bool, int) {
 
 	if l.head == nil {
 		return false, -1
