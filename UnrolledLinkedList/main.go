@@ -2,8 +2,6 @@ package main
 
 import "fmt"
 
-
-
 const NodeCapacity int = 4
 
 type UnrolledNode struct{
@@ -15,8 +13,6 @@ type UnrolledNode struct{
 type UnrolledLinkedList struct {
 	head *UnrolledNode
 }
-
-
 
 func (ul *UnrolledLinkedList) add(val int){
 	if ul.head == nil {
@@ -70,7 +66,7 @@ func (ul *UnrolledLinkedList) get (index int) (int, error){
 
 
 func (ul *UnrolledLinkedList) print(){
-	if(ul.head == nil){
+	if ul.head == nil {
 		fmt.Println("Empty UnrolledLinkedList")
 		return
 	}
@@ -82,8 +78,6 @@ func (ul *UnrolledLinkedList) print(){
 		current = current.next
 	}
 }
-
-
 
 func main() {
 	list := UnrolledLinkedList{}
@@ -101,7 +95,6 @@ func main() {
 	list.add(11)
 	list.add(12)
 	
-	
 	get, _ := list.get(5)
 	get2, err := list.get(13)
 	 if err != nil {
@@ -110,10 +103,6 @@ func main() {
 		fmt.Println(get2)
 	}
 	
-	
-	
 	fmt.Println(get)
 	list.print()
-	
-	
 }
